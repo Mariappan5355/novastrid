@@ -117,6 +117,7 @@ This will start the application on `http://localhost:3000`.
 - **Description**: Imports chat data from an Excel file.
 - **File Field**: `file` (Excel file containing chat data)
 - **Authorization**: Bearer `<your-jwt-token>`
+- **Sample File**: A sample Excel file, Sample_excel.xlsx, is available in the root directory for testing.
 - **Example**:
  ```bash
   curl -X POST http://localhost:3000/api/chat/import-chat \
