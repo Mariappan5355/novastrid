@@ -1,26 +1,20 @@
 import express from 'express';
-import cors from 'cors';
+import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import { db } from './src/database/connection'
-import { loginUser, registerUser } from './src/controllers/login.controller';
+import authRoutes from './src/routes/auth.routes';
+import chatRoutes from './src/routes/chat.routes';
 
 dotenv.config();
 
 const app = express();
-const port = 3000
+app.use(bodyParser.json());
 
-db.connect((error) => {
-    if (error) throw error;
-    console.log('database connected')
-})
+app.use('/api/auth', authRoutes);
+app.use('/api/chat', chatRoutes);
 
-app.use(express.json())
 
-app.use(cors())
+const PORT = process.env.PORT || 3000;
 
-app.post('/register', registerUser)
-app.post('/login', loginUser)
-
-app.listen(port , ()=> {
-    console.log('app starts at '+ port)
-})
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

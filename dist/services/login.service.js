@@ -18,10 +18,10 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const connection_1 = require("../database/connection");
 const register = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { userName, email, password } = data;
+        const { user_name, email, password } = data;
         const hashedPsaaword = yield bcrypt_1.default.hash(password, 10);
-        const query = "INSERT INTO users (userName, email, password) values (?, ?, ?)";
-        const [result] = yield connection_1.db.query(query, [userName, email, hashedPsaaword]);
+        const query = "INSERT INTO users (user_name, email, password) values (?, ?, ?)";
+        const [result] = yield connection_1.db.query(query, [user_name, email, hashedPsaaword]);
         return { statusCode: 201, messsage: 'user regitered successfully' };
     }
     catch (error) {
